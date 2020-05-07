@@ -4,6 +4,9 @@ os:
 language: ruby
 services:
   - docker
+env:
+  global:
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
   # to decrypt file previsouly created with: travis encrypt-file service-account.json -r joustava/multi-k8s
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
