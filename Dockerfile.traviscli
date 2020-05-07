@@ -1,9 +1,18 @@
-# docker run 
+# Instead.
+# $ docker run  -it -v $(pwd):/app ruby:2.3 sh
+# # 
 
 FROM ruby:2.3
 
 WORKDIR /app
+
 RUN gem install travis \
   -v 1.8.10 \
   --no-rdoc \
   --no-ri
+
+# todo: create script that
+# 1. logs in
+# 2. encrypts service file: travis encrypt-file service-account.json -r joustava/multi-k8s
+
+CMD ["travis"]
