@@ -32,6 +32,6 @@ kubectl apply -f k8s
 # Our images in deployment configuration always use latest.
 # We do it like so to make Kubernetes aware of the update without having to rewrite/edit the deployment yaml files in any way.
 kubectl set image deployments/server-deployment server=joustava/multi-server:$SHA
-kubectl set image deployments/client-deployment server=joustava/multi-client:$SHA
-kubectl set image deployments/worker-deployment server=joustava/multi-worker:$SHA
+kubectl set image deployments/client-deployment client=joustava/multi-client:$SHA
+kubectl set image deployments/worker-deployment worker=joustava/multi-worker:$SHA
 
