@@ -1,0 +1,9 @@
+# docker run 
+
+FROM ruby:2.3
+
+WORKDIR /app
+RUN gem install travis \
+  -v 1.8.10 \
+  --no-rdoc \
+  --no-ri
