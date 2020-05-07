@@ -1,4 +1,7 @@
-sudo: required
+dist: xenial
+os:
+  - linux
+language: ruby
 services:
   - docker
 before_install:
@@ -12,3 +15,14 @@ before_install:
   - gcloud components update kubectl
   # ! key file is pre-encrypted and pre-uploaded to Travis
   - gcloud auth activate-service-account --key-file service-account.json
+  # project settings
+  - gcloud config set project multi-k8s-276119
+  # compute zone
+  - gcloud config set compute/zone europe-west1-b
+  # cluster
+  - gcloud container clusters get-credentials multi-cluster
+  # login to docker, set credentials on travis dashboard
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t joustava/react-test -f ./client/Dockerfile.dev
+script:
+  - docker run -e CI=true joustava/react-test npm run test -- --coverage
