@@ -22,7 +22,7 @@ helm install my-nginx stable/nginx-ingress --set rbac.create=true
 *cert manager github.com/jetstack/cert-manager*
 check for updates https://cert-manager.io/docs/installation/kubernetes/
 
-
+(not sure this is actually needed when using helm 3)
 kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.11/deploy/manifests/00-crds.yaml
 
 kubectl create namespace cert-manager
