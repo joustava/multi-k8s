@@ -1,0 +1,22 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: joustava-info-tls-certificate
+spec:
+  secretName: joustava-info
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: joustava.info
+  # Associate certs with these
+  dnsNames:
+    - joustava.info
+    - www.joustava.info
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        # access these in cert validation flow.
+        domains:
+          - joustava.info
+          - www.joustava.info
